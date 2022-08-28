@@ -2,10 +2,18 @@ import Modelo from './clases.js'
 
 /* --------------------CODIGO--------------------- */
 
-var coleccion_modelos = []
+let coleccion_modelos = []
 let buscado
 let coleccion_modelos_ultima = []
- 
+
+
+
+if(localStorage.getItem("lista")==null){
+    localStorage.setItem("lista",JSON.stringify(coleccion_modelos))
+}
+
+localStorage.setItem("lista",JSON.stringify(coleccion_modelos)) 
+
 coleccion_modelos = JSON.parse(localStorage.getItem("lista"))
 actualizar(coleccion_modelos)
 
