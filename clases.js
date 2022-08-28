@@ -161,9 +161,20 @@ const zap1 = new Modelo ('ABC_321', 'NIKE ZOOM', 3, 5, 7, 9)
 const zap2 = new Modelo ('ABC_DEF', 'ADIDAS XLR', 3, 5, 7, 9)
 const zap3 = new Modelo ('ZXC_432', 'TOPPER CUERO', 3, 5, 7, 10)
 
+coleccion_modelos.push(zap1)
+coleccion_modelos.push(zap2)
+coleccion_modelos.push(zap3)
+
+actualizar(coleccion_modelos)
+
+localStorage.setItem("lista",JSON.stringify(coleccion_modelos))
+
+
+
+
 let modelos = [zap1,zap2,zap3]
 
-modelos.forEach(function(Modelo,i,array){
+modelos.forEach(function(Modelo,i){
     console.log(Modelo,i)
 })
 
@@ -250,6 +261,8 @@ row_tablita.appendChild(fragment3) */
 
 
 
+
+
 const btnAñadir = document.querySelector('.btn-outline-success')
 btnAñadir.addEventListener('click', () =>{
 
@@ -267,8 +280,14 @@ btnAñadir.addEventListener('click', () =>{
         
         coleccion_modelos.push(zapa_json)
 
-        console.log(zapa_json);
-        añadirfila (zapa_json)
+        localStorage.setItem("lista",JSON.stringify(coleccion_modelos))
+
+        coleccion_modelos_ultima = JSON.parse(localStorage.getItem("lista"))
+
+        //console.log(zapa_json)
+
+
+        actualizar (coleccion_modelos_ultima)
         limpiar();
 
 
@@ -277,34 +296,55 @@ btnAñadir.addEventListener('click', () =>{
     }
 
 
-})
-
-function añadirfila(zapa_json){
-
-    const arrayElement = 
-    [zapa_json.sku,
-    zapa_json.denominacion,
-    zapa_json.inf_rep,
-    zapa_json.sup_rep,
-    zapa_json.inf_obs,
-    zapa_json.sup_obs]
-
-
-    const template = document.querySelector('#template-td').content
-    const fragment3 = document.createDocumentFragment()
-    const body_tablita = document.getElementById("bodyTablita")
-    const row_new = document.createElement('tr')
-    body_tablita.appendChild(row_new)
-
-
-arrayElement.forEach(item => {
-
-    template.querySelector('#columna').textContent = item
-    const clon = template.cloneNode(true)
-    fragment3.appendChild(clon)
 
 })
-row_new.appendChild(fragment3)
+
+// añadir fila pasa a ser actualizar tabla y tendria que recibir el objeto de local storage
+
+function actualizar(coleccion_modelos_ultima){
+
+    var node = document.getElementById("bodyTablita");
+    while (node.hasChildNodes()) {
+    node.removeChild(node.lastChild);
+    }
+
+    
+
+    coleccion_modelos_ultima.forEach(function(modelo){
+        console.log(modelo)
+        const arrayElement = 
+        [modelo.sku,
+        modelo.denominacion,
+        modelo.inf_rep,
+        modelo.sup_rep,
+        modelo.inf_obs,
+        modelo.sup_obs]
+
+        const template = document.querySelector('#template-td').content
+        const fragment3 = document.createDocumentFragment()
+        const body_tablita = document.getElementById("bodyTablita")
+        const row_new = document.createElement('tr')
+
+        body_tablita.appendChild(row_new)
+    
+    
+        arrayElement.forEach(item => {
+        
+            template.querySelector('#columna').textContent = item
+            const clon = template.cloneNode(true)
+            fragment3.appendChild(clon)
+        
+        })
+        row_new.appendChild(fragment3)
+
+
+    })
+
+/* 
+
+
+
+ */
 
 }
 
@@ -317,3 +357,34 @@ function limpiar (){
     document.querySelector('.lim_sup_obs').value=""
 
 }
+
+/* const btnBuscar = document.querySelector('.buscar')
+btnAñadir.addEventListener('click', () =>{
+
+    const SKU = document.querySelector('.sku').value
+
+    coleccion_modelos_ultima = JSON.parse(localStorage.getItem("lista"))
+
+    coleccion_modelos_ultima.forEach(function(modelo){
+        if(modelo.sku === SKU){
+
+            const buscado = modelo
+            document.querySelector('.deno').value=buscado.denominacion
+            document.querySelector('.lim_inf_rep').value=buscado.inf_rep
+            document.querySelector('.lim_sup_rep').value=buscado.sup_rep
+            document.querySelector('.lim_inf_obs').value=buscado.inf_obs
+            document.querySelector('.lim_sup_obs').value=buscado.sup_obs
+
+        }
+
+        else{
+            
+        }
+
+
+    })
+
+
+
+
+}) */
