@@ -7,7 +7,7 @@ let buscado
 let coleccion_modelos_ultima = []
  
 coleccion_modelos = JSON.parse(localStorage.getItem("lista"))
-//actualizar(coleccion_modelos)
+actualizar(coleccion_modelos)
 
 /* let estado = Estado.activada
 console.log(estado) */
