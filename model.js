@@ -55,10 +55,12 @@ class Modelo{
 
 
 class Op{
-    constructor(n_op, fecha,hora){
+    constructor(n_op, fecha,hora,modelo,color){
         this.n_op = n_op
         this.fecha = fecha
         this.hora = hora
+        this.modelo = Modelo
+        this.color = Color
     }
 }
 
