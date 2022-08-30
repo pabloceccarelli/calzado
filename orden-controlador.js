@@ -101,3 +101,7 @@ function actualizar(coleccion_modelos_ultima){
  */
 
 }
+
+function actualizarEstado(op){
+
+}

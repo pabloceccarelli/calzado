@@ -62,6 +62,7 @@ class Op{
         this.modelo = Modelo
         this.color = Color
     }
+    //agregar asociacion con jornada, semaforo, linea, supervisor de linea, ESTADO
 }
 
 
