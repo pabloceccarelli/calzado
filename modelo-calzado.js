@@ -1,4 +1,4 @@
-import Modelo from './clases.js'
+import {Modelo} from './model.js'
 
 /* --------------------CODIGO--------------------- */
 
@@ -6,9 +6,11 @@ let coleccion_modelos = []
 let buscado
 let coleccion_modelos_ultima = []
 
+//try catch
 
 
-if(localStorage.getItem("lista")==null){
+
+if(localStorage.getItem("lista")===null){
     localStorage.setItem("lista",JSON.stringify(coleccion_modelos))
 }
 
@@ -21,7 +23,6 @@ actualizar(coleccion_modelos)
 console.log(estado) */
 
 const row_tablita = document.getElementById("rowTablita")
-
 const btnAñadir = document.querySelector('.añadir')
 const btnBuscar = document.querySelector('.buscar')
 const btnEliminar = document.querySelector('.eliminar')
